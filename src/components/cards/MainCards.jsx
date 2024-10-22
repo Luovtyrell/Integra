@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { WiDaySunny, WiCloud, WiRain, WiSnow } from "react-icons/wi";
 import MenuCard from "./MenuCards"; // Assuming MenuCard is in the same directory
@@ -110,7 +110,7 @@ const MainCards = () => {
         <MenuCard
           title="Pronóstico 1"
           description="Lluvias para los próximos 7 días"
-          to="/forecast1"
+          to="/RainPage"
         />
         <MenuCard
           title="Pronóstico 2"
