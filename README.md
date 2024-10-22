@@ -92,4 +92,4 @@ Per a començar a utilitzar aquesta plantilla, seguiu aquests passos:
 ## Backend - https://github.com/mikedukakis/sequia_integra
 
 ## Nosaltres
-Som un equip de 9 entusiastes de la tecnologia: 4 persones en frontend ([Alex](https://github.com/alexbessedonato), [Carlos](https://github.com/davila795), [Lucía](https://github.com/luovtyrell) i [Raquel](https://github.com/gatchan1)), 3 persones en backend ([Dani](https://github.com/danidiazd), [Ignasi](https://github.com/mikedukakis) i [Montse](https://github.com/m-maso)) i dues persones en data analysis ([Fede](https://github.com/fhlabate) i Joseph).
+Som un equip de 9 entusiastes de la tecnologia: 4 persones en frontend ([Alex](https://github.com/alexbessedonato), [Carlos](https://github.com/davila795), [Lucía](https://github.com/luovtyrell) i [Raquel](https://github.com/gatchan1)), 3 persones en backend ([Dani](https://github.com/danidiazd), [Ignasi](https://github.com/mikedukakis) i [Montse](https://github.com/m-maso)) i dues persones en data analysis ([Fede](https://github.com/fhlabate) i [Joseph](https://github.com/joetaco06)).
