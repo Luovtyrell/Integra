@@ -1,5 +1,6 @@
 ![image](https://github.com/user-attachments/assets/85a4261b-e310-458d-85b5-beef3db1bfaf)
 
+# Grup 3
 
 # Repte 1: Sequera a la ciutat de Barcelona
 - Tòpic: Canvi climàtic
@@ -37,11 +38,15 @@ Hem optat per utilitzar les dades des del període 1900 a 2023 inclusivament.
 Totes dues bases de dades es trobaven sense valors nuls ni atípics pel que immediatament es van crear els corresponents arxius .json perquè l'equip de backend pugui crear els endpoints que alimentaran al frontend.
 
 Finalment, hem desenvolupat un índex de vulnerabilitat, el qual consistia a agafar la temperatura mínima i màxima faig una mitjana de de cada any.
+
 * AVG_*Tmin històrica = 13 °C
 * AVG_*Tmax històrica = 18 °C
+  
 A aquests valors se'ls va assignar un valor d'una escala de l'1 al 10.
+
 * 13 °C -> Nivell 1
 * 18 °C -> Nivell 10
+  
 D'aquesta manera es va poder interpolar i assignar un valor sobre la base de la temperatura d'aquest any i avaluar en què posició es trobava mitjançant aquest índex.
 
 ## Template Structure
