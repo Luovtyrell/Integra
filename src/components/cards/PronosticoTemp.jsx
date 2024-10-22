@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import {
-  WiDaySunny,
-  WiCloud,
-  WiRain,
-  WiSnow,
-  WiThunderstorm,
-  WiFog,
-} from "react-icons/wi";
+import { WiDaySunny, WiCloud, WiSnow, WiThermometer } from "react-icons/wi"; // Icons for weather
 
-const PronosticoLluvia = () => {
+const PronosticoTemp = () => {
   const [forecastData, setForecastData] = useState([]);
   const [error, setError] = useState(null);
   const [riskAnalysis, setRiskAnalysis] = useState(""); // Store Cohere's response
@@ -72,26 +65,18 @@ const PronosticoLluvia = () => {
     return () => clearInterval(scrollInterval);
   }, []);
 
-  // Function to map weather conditions to icons
-  const getWeatherIcon = (weather) => {
-    const description = weather.main.toLowerCase();
-    switch (description) {
-      case "clear":
-        return <WiDaySunny className="text-yellow-400 text-4xl" />;
-      case "clouds":
-        return <WiCloud className="text-gray-400 text-4xl" />;
-      case "rain":
-      case "drizzle":
-        return <WiRain className="text-blue-400 text-4xl" />;
-      case "snow":
-        return <WiSnow className="text-blue-200 text-4xl" />;
-      case "thunderstorm":
-        return <WiThunderstorm className="text-yellow-600 text-4xl" />;
-      case "fog":
-      case "mist":
-        return <WiFog className="text-gray-300 text-4xl" />;
-      default:
-        return <WiCloud className="text-gray-400 text-4xl" />;
+  // Function to map weather conditions to icons (focus on temperature)
+  const getWeatherIcon = (forecast) => {
+    const temp = forecast.main.temp;
+
+    if (temp < 0) {
+      return <WiSnow className="text-blue-400 text-4xl" />;
+    } else if (temp >= 30) {
+      return <WiThermometer className="text-red-400 text-4xl" />;
+    } else if (temp >= 20 && temp < 30) {
+      return <WiDaySunny className="text-yellow-400 text-4xl" />;
+    } else {
+      return <WiCloud className="text-gray-400 text-4xl" />;
     }
   };
 
@@ -104,21 +89,21 @@ const PronosticoLluvia = () => {
       const response = await fetch("https://api.cohere.ai/generate", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${COHERE_API_KEY}`, // Send the API key in the request
+          Authorization: `Bearer ${COHERE_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "command-xlarge-nightly", // Model to use
+          model: "command-xlarge-nightly",
           prompt,
-          max_tokens: 100, // Limit to 5 lines (around 100 tokens)
+          max_tokens: 100,
           temperature: 0.7,
         }),
       });
 
       const data = await response.json();
       if (data.text) {
-        setRiskAnalysis(data.text.trim()); // Set full text
-        setIsModalOpen(true); // Open the modal
+        setRiskAnalysis(data.text.trim());
+        setIsModalOpen(true);
       } else {
         setRiskAnalysis("No response from the Cohere API.");
       }
@@ -151,17 +136,15 @@ const PronosticoLluvia = () => {
       return `At ${new Date(forecast.dt * 1000).toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
-      })}, temperature will be ${Math.round(
-        forecast.main.temp
-      )}°C with a ${Math.round(forecast.pop * 100)}% chance of rain.`;
+      })}, temperature will be ${Math.round(forecast.main.temp)}°C.`;
     });
 
     return `
-      Analyze the following weather forecast data and provide a concise 5-line risk assessment:
+      Analyze the following temperature forecast data and provide a concise 5-line risk assessment:
 
       ${weatherDetails.join("\n")}
 
-      What should the user be worried about or should they not worry?
+      What should the user be worried about in terms of temperature, or should they not worry?
     `;
   };
 
@@ -196,15 +179,11 @@ const PronosticoLluvia = () => {
               </p>
               {/* Displaying weather icon */}
               <div className="flex justify-center mb-2">
-                {getWeatherIcon(forecast.weather[0])}
+                {getWeatherIcon(forecast)}
               </div>
               {/* Displaying temperature */}
               <p className="text-lg font-bold">
                 {Math.round(forecast.main.temp)}°C
-              </p>
-              {/* Displaying precipitation probability */}
-              <p className="text-sm">
-                {Math.round(forecast.pop * 100)}% lluvia
               </p>
             </div>
           ))
@@ -220,7 +199,7 @@ const PronosticoLluvia = () => {
           className="btn bg-red-500 text-white py-2 px-4 rounded"
           disabled={loading}
         >
-          {loading ? "Analyzing..." : "Analyze Risk"}
+          {loading ? "Analyzing..." : "Analyze Temperature Risk"}
         </button>
       </div>
 
@@ -234,7 +213,9 @@ const PronosticoLluvia = () => {
             >
               ✖
             </button>
-            <h3 className="text-lg font-bold mb-4">Risk Analysis</h3>
+            <h3 className="text-lg font-bold mb-4">
+              Temperature Risk Analysis
+            </h3>
             <p className="text-gray-800">{displayedText}</p>
           </div>
         </div>
@@ -243,4 +224,4 @@ const PronosticoLluvia = () => {
   );
 };
 
-export default PronosticoLluvia;
+export default PronosticoTemp;
