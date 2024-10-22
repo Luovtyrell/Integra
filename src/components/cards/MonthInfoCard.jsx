@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export default function InfoCard({ title, month, year, data, unit, emoji }) {
+export default function MonthInfoCard({ title, month, year, data, unit, emoji }) {
   return (
     <div className="text-center max-w-md w-full p-4 bg-transparent rounded-xl shadow-lg text-gray-800 border-2 border-black mb-8 mt-6">
       <div className="card-body p-4">
@@ -19,7 +19,7 @@ export default function InfoCard({ title, month, year, data, unit, emoji }) {
   );
 }
 
-InfoCard.propTypes = {
+MonthInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   month: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
