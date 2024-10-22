@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { WiDaySunny, WiCloud, WiRain, WiSnow } from "react-icons/wi";
 import MenuCard from "./MenuCards"; // Assuming MenuCard is in the same directory
@@ -108,14 +108,14 @@ const MainCards = () => {
       {/* Menu Cards Section (2x2 Grid) */}
       <div className="grid grid-cols-2 gap-4 max-w-lg w-full">
         <MenuCard
-          title="Pronóstico 1"
+          title="Rain Page"
           description="Lluvias para los próximos 7 días"
-          to="/forecast1"
+          to="/RainPage"
         />
         <MenuCard
-          title="Pronóstico 2"
+          title="Temperature Page"
           description="Condiciones actuales"
-          to="/forecast2"
+          to="/TempPage"
         />
         <MenuCard
           title="Pronóstico 3"
