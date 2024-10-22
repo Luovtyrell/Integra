@@ -1,9 +1,11 @@
+import MainCards from "../../components/cards/MainCards";
+
 function Home() {
   return (
     <>
-      {/* your component */}
-      {/* your component */}
-      {/* your component */}
+      <h1>Navbar Replacement</h1>
+      <MainCards />
+      <h1>Navbar Replacement</h1>
     </>
   );
 }
