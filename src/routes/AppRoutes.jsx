@@ -4,12 +4,11 @@ import Pluja from "../pages/Pluja";
 import Temp from "../pages/Temp";
 import Vegetacio from "../pages/Vegetacio";
 import Indice from "../pages/Indice";
-import NavbarHeader from "../components/navbars/NavbarHeader";
+import NavbarFooter from "../components/navbars/NavbarFooter";
 
 function AppRoutes() {
   return (
     <>
-      <NavbarHeader />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pluja" element={<Pluja />} />
@@ -17,6 +16,7 @@ function AppRoutes() {
         <Route path="/vegetacio" element={<Vegetacio />} />
         <Route path="/indice" element={<Indice />} />
       </Routes>
+      <NavbarFooter />
     </>
   );
 }

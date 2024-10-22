@@ -6,9 +6,9 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function NavbarFooter() {
   const location = useLocation();
-  const page1 = "/RainPage";
-  const page2 = "/forecast2";
-  const page3 = "/forecast3";
+  const page1 = "/pluja";
+  const page2 = "/temp";
+  const page3 = "/vegetacio";
 
   return (
     <div className="flex justify-center py-1">
