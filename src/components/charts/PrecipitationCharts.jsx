@@ -1,4 +1,4 @@
-import { Line } from 'react-chartjs-2';
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,7 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from "chart.js";
+import jsonData from "../../Precipitacions_1950_2023_Any_Mes_Precipitacions.json";
+import { json } from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -21,15 +23,21 @@ ChartJS.register(
 );
 
 const PrecipitationChart = () => {
+  const averagePrecipitation = jsonData.filter((entry, idx) => {
+    if (idx % 6 === 0 || idx === jsonData.length - 1) {
+      return entry
+    }
+  });
+
   const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September'],
+    labels: averagePrecipitation.map(entry => entry.Any),
     datasets: [
       {
-        label: 'Precipitacions (mm)',
-        data: [1.7, 90.3, 71.0, 4.1, 49.8, 20.8, 10.6, 107.9, 63.9],
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        pointBackgroundColor: 'rgba(54, 162, 235, 1)', 
+        label: "Precipitacions (mm)",
+        data: averagePrecipitation.map(entry => entry["AVG Any"]),
+        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        pointBackgroundColor: "rgba(54, 162, 235, 1)",
         fill: true,
       },
     ],
@@ -39,16 +47,19 @@ const PrecipitationChart = () => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        position: "top",
       },
       title: {
         display: true,
-        text: 'Precipitacions del 1990',
       },
     },
   };
 
-  return <Line data={data} options={options} />;
+  return (
+    <>
+      <Line data={data} options={options} />
+    </>
+  );
 };
 
 export default PrecipitationChart;
