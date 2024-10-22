@@ -21,10 +21,28 @@ La nostra aplicació mostra la temperatura i pluja en temps real i la compara am
 
 ## Table of Contents
 
-1. [Template Structure](#template-structure)
-2. [Installation](#installation)
-3. [Additional Configuration](#additional-configuration)
-4. [Additional Resources](#additional-resources)
+1. [Data](#Data)
+2. [Template Structure](#template-structure)
+3. [Installation](#installation)
+4. [Additional Configuration](#additional-configuration)
+5. [Additional Resources](#additional-resources)
+
+## Data
+
+L'equip de data va optar per utilitzar les següents bases de dades:
+- [Precipitacions Barcelona Des de 1786](https://opendata-ajuntament.barcelona.cat/data/ca/dataset/precipitacio-hist-bcn/resource/6f1fb778-0767-478b-b332-c64a833d26d2)
+- [Temperatures mitjanes mensuals de l’aire de la ciutat de Barcelona des de 1780](https://opendata-ajuntament.barcelona.cat/data/ca/dataset/temperatures-hist-bcn)
+
+Hem optat per utilitzar les dades des del període 1900 a 2023 inclusivament.
+Totes dues bases de dades es trobaven sense valors nuls ni atípics pel que immediatament es van crear els corresponents arxius .json perquè l'equip de backend pugui crear els endpoints que alimentaran al frontend.
+
+Finalment, hem desenvolupat un índex de vulnerabilitat, el qual consistia a agafar la temperatura mínima i màxima faig una mitjana de de cada any.
+* AVG_*Tmin històrica = 13 °C
+* AVG_*Tmax històrica = 18 °C
+A aquests valors se'ls va assignar un valor d'una escala de l'1 al 10.
+* 13 °C -> Nivell 1
+* 18 °C -> Nivell 10
+D'aquesta manera es va poder interpolar i assignar un valor sobre la base de la temperatura d'aquest any i avaluar en què posició es trobava mitjançant aquest índex.
 
 ## Template Structure
 
@@ -96,7 +114,3 @@ To start using this template, follow these steps:
     };
     ```
 
-## Additional Resources
-
-
----
