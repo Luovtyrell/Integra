@@ -108,14 +108,14 @@ const MainCards = () => {
       {/* Menu Cards Section (2x2 Grid) */}
       <div className="grid grid-cols-2 gap-4 max-w-lg w-full">
         <MenuCard
-          title="Pronóstico 1"
+          title="Rain Page"
           description="Lluvias para los próximos 7 días"
           to="/RainPage"
         />
         <MenuCard
-          title="Pronóstico 2"
+          title="Temperature Page"
           description="Condiciones actuales"
-          to="/forecast2"
+          to="/TempPage"
         />
         <MenuCard
           title="Pronóstico 3"

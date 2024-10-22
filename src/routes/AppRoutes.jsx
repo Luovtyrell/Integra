@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/home/Home";
-import RainPage from "../pages/home/RainPage";
+import RainPage from "../pages/RainPage/RainPage";
 
 function AppRoutes() {
   return (
