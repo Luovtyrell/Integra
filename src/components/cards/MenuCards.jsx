@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function MenuCard({ title, description, scrollTo }) {
   return (
-    <div className="card bg-gradient-to-br from-yellow-300 to-yellow-400 text-gray-800 w-full shadow-lg rounded-xl border-2 border-black p-4">
+    <div className="card bg-gradient-to-br bg-amber-200 text-gray-800 w-full shadow-lg rounded-xl border-2 border-black p-4">
       <div className="card-body p-2">
         <h2 className="card-title text-lg font-semibold">{title}</h2>
         <p className="text-sm mb-2">{description}</p>
@@ -22,5 +22,5 @@ export default function MenuCard({ title, description, scrollTo }) {
 MenuCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  scrollTo: PropTypes.func.isRequired, // Prop type should be a function
+  scrollTo: PropTypes.func.isRequired, 
 };

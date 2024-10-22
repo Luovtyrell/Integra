@@ -68,7 +68,7 @@ const MainCards = ({ plujaRef, tempRef, vegetacioRef, indiceRef }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-br from-yellow-300 to-yellow-400 px-4 pt-8">
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-br px-4 pt-8">
       {/* Home Title */}
       <header className="mb-4">
         <h1 className="text-gray-800 text-3xl font-semibold text-center">

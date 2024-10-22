@@ -1,14 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { WiDaySunny, WiCloud, WiSnow, WiThermometer } from "react-icons/wi"; // Icons for weather
-
+import { WiDaySunny, WiCloud, WiSnow, WiThermometer } from "react-icons/wi";
 const PronosticoTemp = () => {
   const [forecastData, setForecastData] = useState([]);
   const [error, setError] = useState(null);
-  const [riskAnalysis, setRiskAnalysis] = useState(""); // Store Cohere's response
-  const [displayedText, setDisplayedText] = useState(""); // Typing effect text
-  const [loading, setLoading] = useState(false); // Show loading state during API request
-  const [isModalOpen, setIsModalOpen] = useState(false); // Control the modal popup
+  const [riskAnalysis, setRiskAnalysis] = useState("");
+  const [displayedText, setDisplayedText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const scrollRef = useRef(null);
 
   const WEATHER_API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
@@ -20,7 +19,7 @@ const PronosticoTemp = () => {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
         );
-        setForecastData(response.data.list); // Forecast data in 3-hour intervals
+        setForecastData(response.data.list);
       } catch (err) {
         setError("Error fetching weather data.");
       }
@@ -65,7 +64,6 @@ const PronosticoTemp = () => {
     return () => clearInterval(scrollInterval);
   }, []);
 
-  // Function to map weather conditions to icons (focus on temperature)
   const getWeatherIcon = (forecast) => {
     const temp = forecast.main.temp;
 
@@ -80,7 +78,6 @@ const PronosticoTemp = () => {
     }
   };
 
-  // Handle risk analysis with Cohere using fetch
   const handleRiskAnalysis = async () => {
     setLoading(true);
     const prompt = generateRiskPrompt(forecastData);
@@ -114,7 +111,6 @@ const PronosticoTemp = () => {
     }
   };
 
-  // Typing effect for the risk analysis text
   useEffect(() => {
     if (isModalOpen && riskAnalysis) {
       let currentIndex = 0;
@@ -124,13 +120,12 @@ const PronosticoTemp = () => {
         if (currentIndex >= riskAnalysis.length) {
           clearInterval(intervalId);
         }
-      }, 50); // Adjust typing speed
+      }, 50);
 
       return () => clearInterval(intervalId);
     }
   }, [isModalOpen, riskAnalysis]);
 
-  // Generate prompt for Cohere based on forecast data
   const generateRiskPrompt = (data) => {
     const weatherDetails = data.slice(0, 8).map((forecast) => {
       return `At ${new Date(forecast.dt * 1000).toLocaleTimeString([], {
@@ -148,10 +143,9 @@ const PronosticoTemp = () => {
     `;
   };
 
-  // Close the modal
   const closeModal = () => {
     setIsModalOpen(false);
-    setDisplayedText(""); // Clear the displayed text when closing modal
+    setDisplayedText("");
   };
 
   if (error) {
@@ -162,14 +156,12 @@ const PronosticoTemp = () => {
     <div className="w-full mt-8">
       <div
         className="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide"
-        ref={scrollRef}
-      >
+        ref={scrollRef}>
         {forecastData.length > 0 ? (
           forecastData.slice(0, 8).map((forecast, index) => (
             <div
               key={index}
-              className="min-w-[120px] bg-yellow-300 p-4 rounded-lg shadow-md text-center"
-            >
+              className="min-w-[120px] bg-red-50 p-4 rounded-lg shadow-md text-center">
               {/* Displaying the time */}
               <p className="font-semibold mb-2">
                 {new Date(forecast.dt * 1000).toLocaleTimeString([], {
@@ -197,8 +189,7 @@ const PronosticoTemp = () => {
         <button
           onClick={handleRiskAnalysis}
           className="btn bg-red-500 text-white py-2 px-4 rounded"
-          disabled={loading}
-        >
+          disabled={loading}>
           {loading ? "Analyzing..." : "Analyze Temperature Risk"}
         </button>
       </div>
@@ -209,8 +200,7 @@ const PronosticoTemp = () => {
           <div className="bg-white p-6 rounded-lg max-w-md w-full relative animate-modal-popup">
             <button
               className="absolute top-2 right-2 text-gray-600"
-              onClick={closeModal}
-            >
+              onClick={closeModal}>
               ✖
             </button>
             <h3 className="text-lg font-bold mb-4">

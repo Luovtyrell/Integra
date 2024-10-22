@@ -3,7 +3,7 @@ import NavbarHeader from "./navbars/NavbarHeader";
 
 const PageLayout = ({ title, children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-300 to-yellow-400">
+    <div className="min-h-screen bg-gradient-to-br">
       <NavbarHeader />
       
       {/* Title at the top */}

@@ -52,7 +52,7 @@ function NavbarHeader() {
   };
 
   return (
-    <div className="navbar bg-yellow-400 flex justify-between items-center">
+    <div className="navbar bg-amber-200 flex justify-between items-center">
       <Link to="/" className="btn btn-ghost text-xl">Integra</Link>
       {error ? (
         <span className="text-red-500">{error}</span>
