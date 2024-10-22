@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { WiDaySunny, WiCloud, WiRain, WiSnow } from "react-icons/wi";
 import { fetchWeather } from "../../services/weatherService";
+import { Link } from "react-router-dom";
 
 function NavbarHeader() {
   const [weatherData, setWeatherData] = useState(null);
@@ -52,7 +53,7 @@ function NavbarHeader() {
 
   return (
     <div className="navbar bg-yellow-400 flex justify-between items-center">
-      <button className="btn btn-ghost text-xl">Integra</button>
+      <Link to="/" className="btn btn-ghost text-xl">Integra</Link>
       {error ? (
         <span className="text-red-500">{error}</span>
       ) : weatherData ? (
