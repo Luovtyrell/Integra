@@ -211,7 +211,7 @@ const PronosticoLluvia = () => {
       <div className="mt-6 text-center">
         <button
           onClick={handleRiskAnalysis}
-          className="btn bg-red-500 text-white py-2 px-4 rounded"
+          className="btn btn-warning"
           disabled={loading}>
           {loading ? "Analyzing..." : "Analyze Risk"}
         </button>
