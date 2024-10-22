@@ -98,17 +98,5 @@ To start using this template, follow these steps:
 
 ## Additional Resources
 
-- [React Documentation](https://reactjs.org/docs/getting-started.html)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [PropTypes Guide](https://www.npmjs.com/package/prop-types)
-- [React Router Guide](https://reactrouter.com/web/guides/quick-start)
 
 ---
-
-
-[![Lucía Ordoñez Vilanova](https://avatars.githubusercontent.com/u/153511070?v=4&s=100 "Lucía Ordoñez Vilanova's GitHub Avatar")](https://github.com/Luovtyrell) <a href="https://www.github.com/Luovtyrell"> <br>
-<img src="https://img.shields.io/badge/LUCIA%20ORDO%C3%91EZ%20VILANOVA-gray?style=flat&color=ffdf0a"  height="30" alt="Made by Lucía Ordoñez Vilanova"/>
-</a>
-
-<a href="mailto:luciaorvilanova@gmail.com" target="_blank" rel="noreferrer"><img src="https://img.shields.io/badge/Gmail-EA4335?logo=gmail&logoColor=fff&style=flat"  height="23" alt="Gmail" /></a> <a href="https://www.linkedin.com/in/luovtyrell" target="_blank" rel="noreferrer"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=fff&style=flat" height="23" alt="LinkedIn" /></a> <a href="https://t.me/luovtyrell" target="_blank" rel="noreferrer"><img src="https://img.shields.io/badge/Telegram-26A5E4?logo=telegram&logoColor=fff&style=flat" height="23" alt="Telegram" /></a> <a href="http://discordapp.com/users/664163194989707308" target="_blank" rel="noreferrer"><img src="https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=fff&style=flat" height="23" alt="Discord" /></a> 
