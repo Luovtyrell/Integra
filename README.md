@@ -38,8 +38,8 @@ Totes dues bases de dades es trobaven sense valors nuls ni atípics pel que imme
 
 Finalment, hem desenvolupat un índex de vulnerabilitat, el qual consistia a agafar la temperatura mínima i màxima faig una mitjana de de cada any.
 
-* AVG_*Tmin històrica = 13 °C
-* AVG_*Tmax històrica = 18 °C
+* AVG_Tmin històrica = 13 °C
+* AVG_Tmax històrica = 18 °C
   
 A aquests valors se'ls va assignar un valor d'una escala de l'1 al 10.
 
