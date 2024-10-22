@@ -23,10 +23,9 @@ La nostra aplicació mostra la temperatura i pluja en temps real i la compara am
 ## Table of Contents
 
 1. [Data](#Data)
-2. [Template Structure](#template-structure)
-3. [Installation](#installation)
-4. [Additional Configuration](#additional-configuration)
-5. [Additional Resources](#additional-resources)
+2. [Frontend](#Frontend)
+3. [Backend](#Backend)
+4. [Nosaltres](#Nosaltres)
 
 ## Data
 
@@ -49,73 +48,48 @@ A aquests valors se'ls va assignar un valor d'una escala de l'1 al 10.
   
 D'aquesta manera es va poder interpolar i assignar un valor sobre la base de la temperatura d'aquest any i avaluar en què posició es trobava mitjançant aquest índex.
 
-## Template Structure
+## Frontend - https://github.com/Luovtyrell/Integra
 
-- **`src/components`**: Contains application components.
+### Eines utilitzades
 
-  - `Counter.jsx`: Example component for counting.
-  - `Greeting.jsx`: Example greeting component that uses PropTypes for prop validation.
+Utilitzem **React.js** + **javascript** + **tailwind** per a desenvolupar l'aplicació.  
+Altres eines emprades:
+- **Axios**: client HTTP basat en promeses per fer sol·licituds a APIs. 
+- **DaisyUI**: biblioteca de components per a Tailwind CSS. 
+- **Chart.js**: permet crear gràfics interactius i responsius de manera senzilla.
+- **Leaflet**: biblioteca de codi obert per a mapes.
 
-- **`src/pages`**: Contains application pages.
+### Instal·lació
 
-  - `Home.jsx`: Home page that displays the greeting and includes a button to navigate to the CounterPage.
-  - `CounterPage.jsx`: Page displaying the counter and including a button to navigate back to the Home page.
+Per a començar a utilitzar aquesta plantilla, seguiu aquests passos:
 
-- **`src/routes/AppRoutes.jsx`**: Route configuration for the application.
-
-- **`src/styles/index.css`**: Contains Tailwind CSS imports and a commented base layer if needed.
-
-## Installation
-
-To start using this template, follow these steps:
-
-1. **Clone the repository:**
+1. Clona el repositori:
 
    ```bash
-   git clone https://github.com/Luovtyrell/React-Vite-PropTypes-React-Router-Tailwind-Starter.git
+   git clone https://github.com/Luovtyrell/Integra
    ```
 
-2. **Navigate to the project directory:**
+2. Navega al directori del projecte:
 
    ```bash
-   cd React-Vite-PropTypes-React-Router-Tailwind-Starter
+   cd Integra
    ```
 
-3. **Install the dependencies:**
+3. Instal·la les dependències:
 
    ```bash
    npm install
    ```
 
-4. **Start the development server:**
+4. Inicia el servidor de desenvolupament
 
    ```bash
    npm run dev
    ```
 
-   This will start the development server, and you can view the application at `http://localhost:3000` (or the configured port).
+    Això iniciarà el servidor de desenvolupament, i podreu veure l'aplicació a `http://localhost:5173` (o el port configurat).
 
-## Additional Configuration
+## Backend - https://github.com/mikedukakis/sequia_integra
 
-- **Tailwind CSS**:
-  - Customize Tailwind settings such as adding custom colors in `tailwind.config.js`.
-- **You can add additional plugins like [DaisyUI](https://daisyui.com/docs/install/).**
-  - You can install DaisyUI using npm:
-
-    ```bash
-    npm i -D daisyui@latest
-    ```
-
-    Then, add DaisyUI to your `tailwind.config.js` file:
-
-    ```js
-    // tailwind.config.js
-    module.exports = {
-      content: ["./src/**/*.{js,jsx,ts,tsx}"],
-      theme: {
-        extend: {},
-      },
-      plugins: [require("daisyui")],
-    };
-    ```
-
+## Nosaltres
+Som un equip de 9 entusiastes de la tecnologia: 4 persones en frontend ([Alex](https://github.com/alexbessedonato), [Carlos](https://github.com/davila795), [Lucía](https://github.com/luovtyrell) i [Raquel](https://github.com/gatchan1)), 3 persones en backend ([Dani](https://github.com/danidiazd), [Ignasi](https://github.com/mikedukakis) i [Montse](https://github.com/m-maso)) i dues persones en data analysis ([Fede](https://github.com/fhlabate) i Joseph).
