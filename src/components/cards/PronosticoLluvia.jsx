@@ -12,23 +12,26 @@ import {
 const PronosticoLluvia = () => {
   const [forecastData, setForecastData] = useState([]);
   const [error, setError] = useState(null);
-  const scrollRef = useRef(null); // Ref for the scrolling container
+  const [riskAnalysis, setRiskAnalysis] = useState(null); // Store Cohere's response
+  const [loading, setLoading] = useState(false); // Show loading state during API request
+  const [isModalOpen, setIsModalOpen] = useState(false); // Control the modal popup
+  const scrollRef = useRef(null);
 
-  const API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
+  const WEATHER_API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
+  const COHERE_API_KEY = import.meta.env.VITE_COHERE_API_KEY;
 
   useEffect(() => {
     const fetchWeather = async (lat, lon) => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
         );
-        setForecastData(response.data.list); // The forecast data in 3-hour intervals
+        setForecastData(response.data.list); // Forecast data in 3-hour intervals
       } catch (err) {
         setError("Error fetching weather data.");
       }
     };
 
-    // Get the user's location to fetch weather data
     const getUserLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -46,16 +49,15 @@ const PronosticoLluvia = () => {
     };
 
     getUserLocation();
-  }, [API_KEY]);
+  }, [WEATHER_API_KEY]);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
-    let scrollSpeed = 1; // Adjust scroll speed here
+    let scrollSpeed = 1;
 
     const scroll = () => {
       if (scrollContainer) {
         scrollContainer.scrollLeft += scrollSpeed;
-        // When reaching the end, reset to the beginning
         if (
           scrollContainer.scrollLeft + scrollContainer.clientWidth >=
           scrollContainer.scrollWidth
@@ -65,16 +67,13 @@ const PronosticoLluvia = () => {
       }
     };
 
-    const scrollInterval = setInterval(scroll, 30); // Adjust interval timing here
-
-    // Cleanup on component unmount
+    const scrollInterval = setInterval(scroll, 30);
     return () => clearInterval(scrollInterval);
   }, []);
 
   // Function to map weather conditions to icons
   const getWeatherIcon = (weather) => {
     const description = weather.main.toLowerCase();
-
     switch (description) {
       case "clear":
         return <WiDaySunny className="text-yellow-400 text-4xl" />;
@@ -95,6 +94,65 @@ const PronosticoLluvia = () => {
     }
   };
 
+  // Handle risk analysis with Cohere using fetch
+  const handleRiskAnalysis = async () => {
+    setLoading(true);
+    const prompt = generateRiskPrompt(forecastData);
+
+    try {
+      const response = await fetch("https://api.cohere.ai/generate", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${COHERE_API_KEY}`, // Send the API key in the request
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "command-xlarge-nightly", // Model to use
+          prompt,
+          max_tokens: 100, // Limit to 5 lines (around 100 tokens)
+          temperature: 0.7,
+        }),
+      });
+
+      const data = await response.json();
+      if (data.text) {
+        setRiskAnalysis(data.text.trim()); // Access the text field directly
+        setIsModalOpen(true); // Open the modal when analysis is done
+      } else {
+        setRiskAnalysis("No response from the Cohere API.");
+      }
+    } catch (err) {
+      setRiskAnalysis("Error generating risk analysis.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Generate prompt for Cohere based on forecast data
+  const generateRiskPrompt = (data) => {
+    const weatherDetails = data.slice(0, 8).map((forecast) => {
+      return `At ${new Date(forecast.dt * 1000).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      })}, temperature will be ${Math.round(
+        forecast.main.temp
+      )}°C with a ${Math.round(forecast.pop * 100)}% chance of rain.`;
+    });
+
+    return `
+      Analyze the following weather forecast data and provide a concise 5-line risk assessment:
+
+      ${weatherDetails.join("\n")}
+
+      What should the user be worried about or should they not worry?
+    `;
+  };
+
+  // Close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   if (error) {
     return <div>{error}</div>;
   }
@@ -106,8 +164,8 @@ const PronosticoLluvia = () => {
       </h2>
 
       <div
-        className="flex overflow-x-auto space-x-6 pb-4"
-        ref={scrollRef} // Ref to enable scrolling
+        className="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide"
+        ref={scrollRef}
       >
         {forecastData.length > 0 ? (
           forecastData.slice(0, 8).map((forecast, index) => (
@@ -122,17 +180,14 @@ const PronosticoLluvia = () => {
                   minute: "2-digit",
                 })}
               </p>
-
               {/* Displaying weather icon */}
               <div className="flex justify-center mb-2">
                 {getWeatherIcon(forecast.weather[0])}
               </div>
-
               {/* Displaying temperature */}
               <p className="text-lg font-bold">
                 {Math.round(forecast.main.temp)}°C
               </p>
-
               {/* Displaying precipitation probability */}
               <p className="text-sm">
                 {Math.round(forecast.pop * 100)}% lluvia
@@ -143,6 +198,33 @@ const PronosticoLluvia = () => {
           <p>Cargando datos...</p>
         )}
       </div>
+
+      {/* Risk Analysis Button */}
+      <div className="mt-6 text-center">
+        <button
+          onClick={handleRiskAnalysis}
+          className="btn bg-blue-500 text-white py-2 px-4 rounded"
+          disabled={loading}
+        >
+          {loading ? "Analyzing..." : "Analyze Risk"}
+        </button>
+      </div>
+
+      {/* Modal for Risk Analysis */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg max-w-md w-full relative">
+            <button
+              className="absolute top-2 right-2 text-gray-600"
+              onClick={closeModal}
+            >
+              ✖
+            </button>
+            <h3 className="text-lg font-bold mb-4">Risk Analysis</h3>
+            <p className="animate-fade-in text-gray-800">{riskAnalysis}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

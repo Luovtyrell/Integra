@@ -8,13 +8,13 @@ const Pluja = () => {
     <PageLayout title="Pronóstico de Lluvia">
       <p>Información de lluvias para los próximos días.</p>
 
-      {/* Display the MonthInfoCard */}
-      <MonthInfoCard className="mt-12" />
-
       {/* Display the PronosticoLluvia (Scrollable Weather Timeline) */}
       <div className="mt-8">
         <PronosticoLluvia />
       </div>
+
+      {/* Display the MonthInfoCard */}
+      <MonthInfoCard className="mt-12" />
     </PageLayout>
   );
 };
