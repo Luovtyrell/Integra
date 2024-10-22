@@ -22,5 +22,5 @@ export default function MenuCard({ title, description, scrollTo }) {
 MenuCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
-  scrollTo: PropTypes.func.isRequired, // Changed from `to` to `scrollTo`
+  scrollTo: PropTypes.func.isRequired, // Prop type should be a function
 };
