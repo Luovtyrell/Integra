@@ -3,9 +3,14 @@ import axios from "axios";
 import { WiDaySunny, WiCloud, WiRain, WiSnow } from "react-icons/wi";
 import MenuCard from "./MenuCards"; // Assuming MenuCard is in the same directory
 
-const MainCards = () => {
+const MainCards = ({ plujaRef, tempRef, vegetacioRef, indiceRef }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
+
+  // Scroll function
+  const scrollToSection = (sectionRef) => {
+    sectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
   // Use import.meta.env in Vite to access environment variables
   const API_KEY = import.meta.env.VITE_OPENWEATHERMAP_API_KEY;
@@ -110,22 +115,22 @@ const MainCards = () => {
         <MenuCard
           title="Rain Page"
           description="Lluvias para los próximos 7 días"
-          to="/RainPage"
+          scrollTo={() => scrollToSection(plujaRef)}
         />
         <MenuCard
           title="Temperature Page"
           description="Condiciones actuales"
-          to="/TempPage"
+          scrollTo={() => scrollToSection(tempRef)}
         />
         <MenuCard
           title="Pronóstico 3"
           description="Alertas meteorológicas"
-          to="/forecast3"
+          scrollTo={() => scrollToSection(vegetacioRef)}
         />
         <MenuCard
           title="Pronóstico 4"
           description="Evolución del clima"
-          to="/forecast4"
+          scrollTo={() => scrollToSection(indiceRef)}
         />
       </div>
     </div>
