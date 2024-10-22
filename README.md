@@ -1,12 +1,20 @@
 ![image](https://github.com/user-attachments/assets/85a4261b-e310-458d-85b5-beef3db1bfaf)
 
 
-# React + Vite + PropTypes + React Router + Tailwind CSS Starter Template
+# Repte 1: Sequera a la ciutat de Barcelona
+- Tòpic: Canvi climàtic
+- Agenda 2030: ODS Acció Climàtica | ODS 11: Ciutats i comunitats sostenibles | ODS 6: Aigua neta i sanejament
 
 <img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=000&style=flat" alt="React Badge" style="height: 23px;"> <img src="https://img.shields.io/badge/PropTypes-lightblue?style=flat&logo=React&logoColor=black" alt="PropTypes Badge" style="height: 23px;"> <img src="https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=fff&style=flat" alt="Vite Badge" style="height: 23px;"> <img src="https://img.shields.io/badge/React%20Router-CA4245?logo=reactrouter&logoColor=fff&style=flat" alt="React Router Badge" style="height: 23px;"> <img src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=fff&style=flat" alt="Tailwind CSS Badge" style="height: 23px;">
 
+## Objectiu
 
-This is a starter template for React projects using Vite as the bundler, PropTypes for prop validation, React Router for routing, and Tailwind CSS for styling. It provides a basic and functional setup that you can use to kickstart your React project and save time.
+La sequera és un dels majors problemes que afrontem a Catalunya en els últims anys. A més de provocar problemes ambientals, a una ciutat com Barcelona la sequera pot afectar a l'agricultura, el turisme, la salut i el benestar de la ciutadania, així com l'economia en general.
+Tenint en compte aquesta informació, penseu un recurs que utilitzi dades i tecnologies per a abordar els desafiaments de la sequera i millorar la gestió de l'aigua en les ciutats.
+
+## Resum
+
+La nostra aplicació mostra la temperatura i pluja en temps real i la compara amb l'històric de l'últim segle. (1900 - 2023). Amb aquesta informació podem monitorar l'evolució de la mitjana de temperatura mensual per any i dimensionar quant està augmentant la temperatura a la ciutat de barcelona.
 
 ## Table of Contents
 
